@@ -2,16 +2,16 @@ package com.labs.maven.spring.LabSpring.Controllers;
 
 import com.labs.maven.spring.LabSpring.Models.Country;
 import com.labs.maven.spring.LabSpring.Repositories.CountryRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/country")
+@Controller
+@RequestMapping("/country")
 public class CountryController {
 
     @Autowired
@@ -21,45 +21,56 @@ public class CountryController {
         this.countryRep = countryRep;
     }
 
-    @GetMapping
-    public List<Country> getListCountry() {
-        return (List<Country>) countryRep.findAll();
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ModelAndView DETAIL(@PathVariable Integer id) {
+        ModelAndView model = new ModelAndView("countryDetail");
+
+        model.addObject("Country", countryRep.findById(id).get());
+
+        return model;
     }
 
-    @GetMapping("/{id}")
-    public Optional<Country> getCountry(@PathVariable Integer id) {
-        return countryRep.findById(id);
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView getAllCountry() {
+        ModelAndView model = new ModelAndView("countryAll");
+
+        List<Country> country = (List<Country>) countryRep.findAll();
+
+        model.addObject("CountryList", country);
+
+        return model;
     }
 
-    @PostMapping
-    public Country create(@RequestBody Country country){
-        return countryRep.save(country);
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ModelAndView CREATE(@ModelAttribute Country country){
+
+        countryRep.save(country);
+        return new ModelAndView("redirect:/country");
     }
 
-    @PutMapping("/{id}")
-    public Country update(@RequestBody Country newCountry, @PathVariable Integer id){
-           return countryRep.findById(id)
-                    .map(county -> {
-                        county.setName(newCountry.getName());
-                        county.setRegion(newCountry.getRegion());
-                        county.setPopulation(newCountry.getPopulation());
-                        return countryRep.save(county);
-                    })
-                    .orElseGet(() -> {
-                        newCountry.setId(id);
-                        return countryRep.save(newCountry);
-                    });
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public ModelAndView UPDATE(@ModelAttribute Country newCountry, @PathVariable Integer id){
+
+        countryRep.findById(id)
+                .map(country -> {
+                    country.setName(newCountry.getName());
+                    country.setRegion(newCountry.getRegion());
+                    country.setPopulation(newCountry.getPopulation());
+                    return countryRep.save(country);
+                })
+                .orElseGet(() -> {
+                    newCountry.setId(id);
+                    return countryRep.save(newCountry);
+                });
+
+        return new ModelAndView("redirect:/country");
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Integer id){
-        try{
-            countryRep.deleteById(id);
-        }
-        catch (Exception e) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity(HttpStatus.OK);
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView DELETE(@PathVariable Integer id){
+
+        countryRep.deleteById(id);
+        return new ModelAndView("redirect:/country");
     }
 }
 

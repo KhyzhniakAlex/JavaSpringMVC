@@ -6,9 +6,9 @@
 
 .wrapper1 {
     display: grid;
-    width: 65%;
+    width: 60%;
     margin: auto;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     align-content: center;
     padding-top: 2%;
 }
@@ -24,9 +24,9 @@
 
 .wrapper2 {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     align-content: center;
-    width: 65%;
+    width: 60%;
     margin: auto;
 }
 
@@ -61,7 +61,7 @@ h2 {
     display: grid;
     width: 60%;
     margin: auto;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     align-content: center;
 }
 
@@ -80,7 +80,7 @@ input {
     display: grid;
     width: 60%;
     margin-left: 20%;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .forSubmit {

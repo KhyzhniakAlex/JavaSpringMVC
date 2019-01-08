@@ -10,17 +10,14 @@ import javax.persistence.*;
 public class Country {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
     private String region;
-    private int population;
+    private String population;
 
-    @JsonCreator
-    public Country(@JsonProperty(value = "name", required = true) String name,
-                   @JsonProperty(value = "region", required = true) String region,
-                   @JsonProperty(value = "population", required = true) int population)
+    public Country(String name, String region, String population)
     {
         this.name = name;
         this.region = region;
@@ -55,11 +52,11 @@ public class Country {
         this.region = region;
     }
 
-    public int getPopulation() {
+    public String getPopulation() {
         return population;
     }
 
-    public void setPopulation(int population) {
+    public void setPopulation(String population) {
         this.population = population;
     }
 
@@ -71,6 +68,6 @@ public class Country {
         return id == country.id &&
                 name.equals(country.name) &&
                 region.equals(country.region) &&
-                population == country.population;
+                population.equals(country.population);
     }
 }

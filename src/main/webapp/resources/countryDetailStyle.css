@@ -6,9 +6,9 @@
 
 .wrapper1 {
     display: grid;
-    width: 65%;
+    width: 60%;
     margin: auto;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     align-content: center;
     padding-top: 2%;
 }
@@ -24,9 +24,9 @@
 
 .wrapper2 {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     align-content: center;
-    width: 65%;
+    width: 60%;
     margin: auto;
 }
 
@@ -39,30 +39,32 @@
     color: black;
 }
 
-.goBack {
-    margin-top: 2%;
-    text-align: center;
-}
-
-.createWr1 {
+.updateWr1 {
     margin: 5% auto 0 auto;
-    width: 58.5%;
+    width: 48.5%;
     padding: 10px;
     background-color: black;
     border: 1px solid grey;
 }
 
+.updateWr2 {
+    display: grid;
+    width: 50%;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    align-content: center;
+}
+
+.updateWr3 {
+    display: grid;
+    width: 50%;
+    margin-left: 25%;
+    grid-template-columns: repeat(3, 1fr);
+}
+
 h2 {
     text-align: center;
     color: white;
-}
-
-.createWr2 {
-    display: grid;
-    width: 60%;
-    margin: auto;
-    grid-template-columns: repeat(4, 1fr);
-    align-content: center;
 }
 
 .space {
@@ -76,14 +78,12 @@ input {
     width: 70%;
 }
 
-.createWr3 {
-    display: grid;
-    width: 60%;
-    margin-left: 20%;
-    grid-template-columns: repeat(4, 1fr);
+.forSubmit {
+    margin-top: 2%;
+    text-align: center;
 }
 
-.forSubmit {
+.goBack {
     margin-top: 2%;
     text-align: center;
 }
@@ -91,13 +91,4 @@ input {
 .btn {
     font-size: 15px;
     padding: 5px;
-    margin-bottom: 2%;
-}
-
-.btnAction {
-    text-decoration: none;
-    background-color: #000000;
-    color: #FFFFFF;
-    padding: 4px;
-    margin: 0 1% 0 1%;
 }

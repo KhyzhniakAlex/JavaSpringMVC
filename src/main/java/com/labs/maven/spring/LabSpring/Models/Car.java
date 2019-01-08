@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String brand;
@@ -18,11 +18,19 @@ public class Car {
     private int prise;
     private String color;
 
-    @JsonCreator
+    /*@JsonCreator
     public Car(@JsonProperty(value = "brand", required = true) String brand,
                @JsonProperty(value = "model", required = true) String model,
                @JsonProperty(value = "prise", required = true) int prise,
                @JsonProperty(value = "color", required = true) String color)
+    {
+        this.brand = brand;
+        this.model = model;
+        this.prise = prise;
+        this.color = color;
+    }*/
+
+    public Car(String brand, String model, int prise, String color)
     {
         this.brand = brand;
         this.model = model;
